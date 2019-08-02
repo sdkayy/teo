@@ -1,10 +1,7 @@
-## My basic boiler plate.
+## TEO Challenge
 
-This is just a very simple boiler plate to get me up and running rather fast on new projects.
+Notes: 
+    - Tournament call was always returning nothing, getting CORBS 
+    - Was going to use redux as a memorizer but decided against
 
-Inlcudes:
-- React
-- Typescript
-- Redux
-- Apollo
-- Routing
+Please let me know anything I can improve on, was a good straight forward challenge.
