@@ -1,8 +1,7 @@
-import * as React from 'react';
-import styled from 'styled-components';
+import * as React from "react";
+import styled from "styled-components";
 
 const ErrorHolder = styled.div`
-  width: 50%;
   padding: 12px;
   margin: auto;
 `;
@@ -14,22 +13,24 @@ const ErrorText = styled.p`
   color: #c6c6c6;
 `;
 
-const EmojiTop = styled.span`
-  font-size: 46px;
-  display: table;
-  opacity: 0.5;
-  margin: auto;
-`;
-
 interface Props {
   message: string;
 }
 
 export default (props: Props) => (
   <ErrorHolder>
-    <EmojiTop role="img" aria-labelledby="message">
+    <span
+      role="img"
+      aria-label="Error!"
+      style={{
+        fontSize: "46px",
+        display: "table",
+        opacity: 0.5,
+        margin: "auto"
+      }}
+    >
       🤖
-    </EmojiTop>
+    </span>
     <ErrorText id="message">{props.message}</ErrorText>
   </ErrorHolder>
 );
