@@ -48,5 +48,17 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "lint-staged": {
+    "*.js": [
+      "prettier --write",
+      "git add"
+    ],
+    "*.ts*": [
+      "prettier --write",
+      "tslint -p tsconfig.json",
+      "git add"
+    ]
+  },
+  "pre-commit": "lint:staged"
 }
