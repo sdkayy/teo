@@ -16,6 +16,8 @@
     "graphql": "^14.4.2",
     "graphql-tag": "^2.10.1",
     "js-cookie": "^2.2.0",
+    "lint-staged": "^9.2.1",
+    "pre-commit": "^1.2.2",
     "react": "^16.8.6",
     "react-apollo": "^2.5.8",
     "react-dom": "^16.8.6",
@@ -32,8 +34,17 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint:staged": "lint-staged"
   },
+  "lint-staged": {
+    "*.ts*": [
+      "prettier --write",
+      "tslint -p tsconfig.json",
+      "git add"
+    ]
+  },
+  "pre-commit": "lint:staged",
   "eslintConfig": {
     "extends": "react-app"
   },
@@ -48,17 +59,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "lint-staged": {
-    "*.js": [
-      "prettier --write",
-      "git add"
-    ],
-    "*.ts*": [
-      "prettier --write",
-      "tslint -p tsconfig.json",
-      "git add"
-    ]
-  },
-  "pre-commit": "lint:staged"
+  }
 }
