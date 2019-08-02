@@ -1,18 +1,13 @@
-import React, { useState } from "react";
-import {
-  Tournament,
-  Result,
-  Team as ITeam,
-  ResultParticipant
-} from "../../types";
-import useFetch from "../hooks/useFetch";
-import styled from "styled-components";
-import { VerticalContainer, DisplayCard } from "../Containers";
-import Team from "./team";
-import dayjs from "dayjs";
-import Error from "../Error";
-import advancedFormat from "dayjs/plugin/advancedFormat";
-import Button from "../Buttons";
+import React, { useState } from 'react';
+import { Tournament, Result, Team as ITeam, ResultParticipant } from '../../types';
+import useFetch from '../hooks/useFetch';
+import styled from 'styled-components';
+import { VerticalContainer, DisplayCard } from '../Containers';
+import Team from './team';
+import dayjs from 'dayjs';
+import Error from '../Error';
+import advancedFormat from 'dayjs/plugin/advancedFormat';
+import Button from '../Buttons';
 
 const Header = styled.div`
   width: 100%;
@@ -49,31 +44,25 @@ interface TourneyProps {
 }
 
 export default (props: TourneyProps) => {
-  const [sorting, setSorting] = useState("DESC");
+  const [sorting, setSorting] = useState('DESC');
   dayjs.extend(advancedFormat);
-  const matchQuery = useFetch(
-    `https://api.eslgaming.com/play/v1/leagues/${props.tId}/results`,
-    {
-      headers: { accept: "application/json" }
-    }
-  );
+  const matchQuery = useFetch(`https://api.eslgaming.com/play/v1/leagues/${props.tId}/results`, {
+    headers: { accept: 'application/json' },
+  });
 
-  const tournyQuery = useFetch(
-    `https://api.eslgaming.com/play/v1/leagues/${props.tId}`,
-    {
-      headers: { accept: "application/json" }
-    }
-  );
+  const tournyQuery = useFetch(`https://api.eslgaming.com/play/v1/leagues/${props.tId}`, {
+    headers: { accept: 'application/json' },
+  });
 
   const teamsQuery = useFetch(
     `https://api.eslgaming.com/play/v1/leagues/${props.tId}/contestants`,
     {
-      headers: { accept: "application/json" }
+      headers: { accept: 'application/json' },
     }
   );
 
   if (matchQuery.error || teamsQuery.error) {
-    return <Error message={"Problem finding tournamnet information!"} />;
+    return <Error message={'Problem finding tournamnet information!'} />;
   }
 
   // @ts-ignore
@@ -93,26 +82,20 @@ export default (props: TourneyProps) => {
   */
   return (
     <>
-      <DisplayCard
-        isSpecial={true}
-        isBigger={!props.isSoloView}
-        style={{ marginBottom: "16px" }}
-      >
+      <DisplayCard isSpecial={true} isBigger={!props.isSoloView} style={{ marginBottom: '16px' }}>
         <Header>
-          <Title>{tourny.name || "Default Name"}</Title>
+          <Title>{tourny.name || 'Default Name'}</Title>
           <Date>
-            {dayjs(
-              tourny.timeline ? tourny.timeline.checkIn.begin : dayjs()
-            ).format("Do MMMM YYYY")}
+            {dayjs(tourny.timeline ? tourny.timeline.checkIn.begin : dayjs()).format(
+              'Do MMMM YYYY'
+            )}
           </Date>
         </Header>
       </DisplayCard>
       <DisplayCard isBigger={!props.isSoloView}>
-        <VerticalContainer style={{ maxHeight: "550px", overflow: "auto" }}>
+        <VerticalContainer style={{ maxHeight: '550px', overflow: 'auto' }}>
           <SortingContainer>
-            <Button
-              onClick={() => setSorting(sorting === "ASC" ? "DESC" : "ASC")}
-            >
+            <Button onClick={() => setSorting(sorting === 'ASC' ? 'DESC' : 'ASC')}>
               {sorting}
             </Button>
           </SortingContainer>
@@ -122,7 +105,7 @@ export default (props: TourneyProps) => {
                 // Can't think of a better solution ATM
                 const aBigger = dayjs(a.beginAt).isAfter(b.beginAt);
                 if (aBigger) {
-                  if (sorting === "ASC") {
+                  if (sorting === 'ASC') {
                     return 1;
                   } else {
                     return -1;
@@ -130,7 +113,7 @@ export default (props: TourneyProps) => {
                 }
                 const bBigger = dayjs(b.beginAt).isAfter(a.beginAt);
                 if (bBigger) {
-                  if (sorting === "ASC") {
+                  if (sorting === 'ASC') {
                     return -1;
                   } else {
                     return 1;
@@ -143,24 +126,21 @@ export default (props: TourneyProps) => {
                   <TeamEntry key={match.id}>
                     <Date
                       style={{
-                        marginBottom: "6px",
-                        color: "#818F8F"
+                        marginBottom: '6px',
+                        color: '#818F8F',
                       }}
                     >
-                      {dayjs(match.beginAt).format("HH:MM")}
+                      {dayjs(match.beginAt).format('HH:MM')}
                     </Date>
                     {match.participants.map((team: ResultParticipant) => {
-                      const realTeam = teams.filter(
-                        _team => _team.id === team.id
-                      )[0];
+                      const realTeam = teams.filter(_team => _team.id === team.id)[0];
                       return (
                         <Team
                           key={team.id}
-                          name={realTeam ? realTeam.name : "bye"}
+                          name={realTeam ? realTeam.name : 'bye'}
                           winner={
                             match.participants.filter(
-                              (_team: ResultParticipant) =>
-                                _team.points[0] < team.points[0]
+                              (_team: ResultParticipant) => _team.points[0] < team.points[0]
                             ).length > 0
                           }
                           score={team.points[0]}

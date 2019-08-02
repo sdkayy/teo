@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect } from 'react';
 
 export default (url: string, options: any) => {
   const [response, setResponse] = React.useState(null);

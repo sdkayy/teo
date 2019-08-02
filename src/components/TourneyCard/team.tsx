@@ -1,5 +1,5 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
 const Holder = styled.div`
   width: 100%;
@@ -13,7 +13,7 @@ const TeamName = styled.div<{ winner?: boolean }>`
   margin-bottom: 15px;
   padding-left: 12px;
   border-radius: 2px;
-  border-left: 4px solid ${props => (props.winner ? "green" : "red")};
+  border-left: 4px solid ${props => (props.winner ? 'green' : 'red')};
 `;
 
 const Score = styled.p<{ winner?: boolean }>`

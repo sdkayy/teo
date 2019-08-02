@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Container = styled.div`
   display: flex;
@@ -14,7 +14,7 @@ interface CardProps {
 }
 
 export const DisplayCard = styled.div<CardProps>`
-  width: ${props => (props.isBigger ? "75%" : "50%")};
+  width: ${props => (props.isBigger ? '75%' : '50%')};
   border-radius: 2px;
   background: white;
   padding: 12px;

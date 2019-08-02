@@ -1,5 +1,5 @@
-import React, { ReactElement } from "react";
-import styled from "styled-components";
+import React, { ReactElement } from 'react';
+import styled from 'styled-components';
 
 const ButtonStyled = styled.div`
   padding: 8px;
@@ -15,6 +15,4 @@ const ButtonStyled = styled.div`
   }
 `;
 
-export default (props: any) => (
-  <ButtonStyled {...props}>{props.children}</ButtonStyled>
-);
+export default (props: any) => <ButtonStyled {...props}>{props.children}</ButtonStyled>;

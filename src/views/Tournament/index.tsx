@@ -1,7 +1,7 @@
-import * as React from "react";
-import { withRouter } from "react-router-dom";
-import { VerticalContainer, Container } from "../../components/Containers";
-import TourneyCard from "../../components/TourneyCard";
+import * as React from 'react';
+import { withRouter } from 'react-router-dom';
+import { VerticalContainer, Container } from '../../components/Containers';
+import TourneyCard from '../../components/TourneyCard';
 export default withRouter((props: any) => (
   <Container>
     <VerticalContainer center={true}>
